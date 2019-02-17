@@ -5,19 +5,31 @@ import Person from './Person/Person.js';
 class App extends Component {
   state = {
     persons: [
-      {name:"Max", age:"28"},
-      {name:"Manu", age:"30"},
-      {name:"Stephanie", age:"25"}
+      {name: "Max" , age: 28},
+      {name: "Manu" , age: 30},
+      {name: "Stephanie" , age: 25}
     ]
   }
 
   switchNameHandler = (newName) => {
     this.setState({persons : [
-      {name:newName, age:"28"},
-      {name:"Manuel", age:"30"},
-      {name:"Stephanie Rathod", age:"24"}
+      {name: newName , age: 28},
+      {name: "Manuel" , age: 30},
+      {name: "Stephanie Rathod" , age: 24}
     ]});
 
+  }
+
+  nameChangedHandler = (event) => {
+    this.setState(
+      {
+        persons : [
+          {name: 'Max' , age:28},
+          {name: event.target.value , age: 30},
+          {name: 'Stephanie' , age: 26}
+        ]
+      }
+    )
   }
 
   render() {
@@ -27,7 +39,7 @@ class App extends Component {
         <p>This is really working</p>
         <button onClick={this.switchNameHandler.bind(this,'Maximillian!!!')}>Switch Name</button>
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} click={this.switchNameHandler.bind(this,'MAXIMILLAN')}>My Hobbies : Racing</Person>
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} click={this.switchNameHandler.bind(this,'MAXIMILLAN')} changed={this.nameChangedHandler}>My Hobbies : Racing</Person>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
       </div>
     );
